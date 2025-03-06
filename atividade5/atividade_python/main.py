@@ -170,6 +170,6 @@ def executar_programa():
     exibir_tabela(lista_de_funcionarios)
 
 
-#pode ser usado tanto o testar programa quanto o executar o programa, tó tirar o comentário "#"
+#pode ser usado tanto o testar programa quanto o executar o programa, só tirar o comentário "#"
 #testar_programa()
 #executar_programa()
