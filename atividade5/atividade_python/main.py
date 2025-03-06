@@ -154,5 +154,22 @@ def testar_programa():
     calcular_salario_liquido(lista_de_funcionarios)
     
     exibir_tabela(lista_de_funcionarios)
+  
 
-testar_programa()
+def executar_programa():
+    lista_de_funcionarios = coletar_informacoes()    
+    calcular_salario_base(lista_de_funcionarios)
+    calcular_horas_extras(lista_de_funcionarios)
+    calcular_insalubridade(lista_de_funcionarios)
+    calcular_bonificacao(lista_de_funcionarios)
+    calcular_INSS(lista_de_funcionarios)
+    calcular_imposto_de_renda(lista_de_funcionarios)
+    plano_de_saude(lista_de_funcionarios)
+    calcular_salario_liquido(lista_de_funcionarios)
+    
+    exibir_tabela(lista_de_funcionarios)
+
+
+#pode ser usado tanto o testar programa quanto o executar o programa, tó tirar o comentário "#"
+#testar_programa()
+#executar_programa()
