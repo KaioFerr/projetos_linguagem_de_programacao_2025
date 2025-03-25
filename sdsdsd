@@ -1,0 +1,82 @@
+public class Funcionario {
+
+    public String name;
+    public int departamento;
+    public double quantidadeDeHorasMes;
+    public double salarioBase;
+    public double horaExtra;
+    public double insalubridade;
+    public double bonificacao;
+    public double inss;
+    public double ir;
+    public double planoDeSaude = 20;
+    public double salarioLiquido;
+    public double valorDaHoraTrabalhada;
+    public double horasAdicionais;
+    public double salarioBruto;
+
+    public Funcionario(String name, int departamento, double quantidadeDeHorasMes) {
+
+        this.name = name;
+        this.departamento = departamento;
+        this.quantidadeDeHorasMes = quantidadeDeHorasMes;
+
+        calcularSalarioBase();
+        calcularHoraExtra();
+        calcularInsalubridade();
+        calcularBonificacao();
+        calcularInssEIR();
+        calcularSalarioLiquido();
+    }
+
+    void calcularSalarioBase(){
+
+        if (this.departamento == 1){
+
+            this.valorDaHoraTrabalhada = 22;
+        }else if (this.departamento == 2){
+            this.valorDaHoraTrabalhada = 12;
+        }
+        else this.valorDaHoraTrabalhada = 0;
+    }
+
+    void calcularHoraExtra(){
+
+        this.horasAdicionais = this.quantidadeDeHorasMes - 40;
+
+        if (this.horaExtra >= 0){
+
+            this.horaExtra = this.valorDaHoraTrabalhada * 2 * this.horasAdicionais;
+        }else this.horaExtra = 0;
+    }
+
+    void calcularInsalubridade(){
+        if (this.departamento == 2){
+            this.insalubridade = 0.15;
+        }else this.insalubridade = 0;
+    }
+
+    void calcularBonificacao(){
+
+        if (this.quantidadeDeHorasMes > 20 && this.quantidadeDeHorasMes <= 30){
+            this.bonificacao = 0.03;
+        }else if (this.quantidadeDeHorasMes > 30 && this.quantidadeDeHorasMes <= 40) {
+            this.bonificacao = 0.05;
+        }else if (this.quantidadeDeHorasMes > 40 && this.departamento == 1){
+            this.bonificacao = 0.1;
+        }else this.bonificacao = 0;
+    }
+
+    void calcularInssEIR() {
+
+        this.salarioBruto = this.salarioBase + this.horaExtra + this.insalubridade + this.bonificacao;
+
+        this.inss = 0.07 * this.salarioBruto;
+
+        this.ir = 0.12 * this.salarioBruto;
+    }
+
+    void calcularSalarioLiquido(){
+        this.salarioLiquido = this.salarioBruto - this.inss - this.ir + this.planoDeSaude;
+    }
+}
