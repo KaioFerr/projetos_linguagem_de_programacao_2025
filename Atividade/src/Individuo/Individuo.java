@@ -1,11 +1,12 @@
 package Individuo;
 
 public class Individuo {
-    private int idade;
     private String nome;
-    private Double peso;
     private String sexo;
+    private int idade;
+    private Double peso;
     private Double altura;
+    private Double taxaAtividadeFisica;
 
     public int getIdade() {
         return idade;
@@ -36,9 +37,9 @@ public class Individuo {
         return sexo;
     }
 
-    public void setSexo(String sexo) throws Exception {
-        if (sexo.toLowerCase() != "masculino" || sexo.toLowerCase() != "feminino") throw new Exception("Sexo invalido (Masculino, Feminino)");
-        this.sexo = sexo.toLowerCase();
+    public void setSexo(int indice) {
+        String[] tipoSexo = {"Masculino", "Feminino"};
+        this.sexo = tipoSexo[indice];
     }
 
     public Double getAltura() {
@@ -48,6 +49,17 @@ public class Individuo {
     public void setAltura(Double altura) throws Exception{
         if (altura < 0) throw new Exception("Altura invalido");
         this.altura = altura;
+    }
+    
+    public void setTaxaAtividadeFisica(int nivelAtividadeFisica) throws Exception {
+        if (nivelAtividadeFisica >= 0 && nivelAtividadeFisica < 5){
+            double[] listaDeNiveisDeAtividadeFisica = {1.2, 1.375, 1.55, 1.725, 1.9};
+            this.taxaAtividadeFisica = listaDeNiveisDeAtividadeFisica[nivelAtividadeFisica];
+        }else throw new Exception("Taxa Atividade Fisica Invalida (1-5)");
+    }
+
+    public Double getTaxaAtividadeFisica() {
+        return taxaAtividadeFisica;
     }
 }
 

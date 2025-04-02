@@ -7,21 +7,35 @@ import java.util.Objects;
 
 public class CalculadoraIMC {
 
-    public Double getTaxaMetabolica (Individuo individuo) {
+    private Individuo individuo;
 
-        if (Objects.equals(individuo.getSexo(), "masculino")) {
-            return 88.362 + (13.397 * individuo.getPeso()) + (4.799 * individuo.getAltura()) - (5.677 * individuo.getIdade());
+    public CalculadoraIMC(Individuo individuo) {
+        this.individuo = individuo;
+    }
+
+    public Double getTaxaMetabolica () {
+
+        if (Objects.equals(this.individuo.getSexo(), "masculino")) {
+            return 88.362 + (13.397 * this.individuo.getPeso()) + (4.799 * this.individuo.getAltura()) - (5.677 * this.individuo.getIdade());
         }
 
-        return 447.593 + (9.247 * individuo.getPeso()) + (3.098 * individuo.getAltura()) - (4.330 * individuo.getIdade());
+        return 447.593 + (9.247 * this.individuo.getPeso()) + (3.098 * this.individuo.getAltura()) - (4.330 * this.individuo.getIdade());
     }
 
-    public Double getQuantidadeIdealDaAgua(Individuo individuo) {
-        return 0.35 * individuo.getPeso();
+    public Double gastoCalorioDiario(){
+        return getTaxaMetabolica() * individuo.getTaxaAtividadeFisica();
     }
 
-    public Double getDeficitMetabolico (Individuo individuo) {
+    public Double getQuantidadeIdealDaAgua() {
+        return 0.35 * this.individuo.getPeso();
+    }
 
+    public Double getDeficitMetabolico (Double quantidadeParaPerderPeso, int dia) {
+        return 7000 * quantidadeParaPerderPeso / dia;
+    }
+
+    public Double quantidadeCaloriaCorida(Double distancia){
+        return 0.6 * this.individuo.getPeso() * distancia;
     }
 
 
