@@ -1,5 +1,5 @@
 import campeonato.Campeonato;
-import jogo.Jogo;
+import tabela.Tabela;
 import time.Time;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ public class Main {
                     int time01 = Integer.parseInt(JOptionPane.showInputDialog(null, mensagem + "Digite o index do time 01:"));
                     int time02 = Integer.parseInt(JOptionPane.showInputDialog(null, mensagem + "Digite o index do time 02:"));
 
-                    if (time.getQtdJogos() < listaDeTimes.size()) {
+                    if (time.getTotalJogos() < listaDeTimes.size()) {
                         try {
                             campeonato.cadastrarJogo(listaDeTimes.get(time01), listaDeTimes.get(time02));
                         } catch (Exception e) {
@@ -72,8 +72,10 @@ public class Main {
                         }
                     }
                 });
-
-                JOptionPane.showMessageDialog(null, campeonato.tabelaDePontuacao());
+                //implemtar tabela
+                Tabela tabela = new Tabela(campeonato.getListaDeTimes());
+                tabela.mostrarTabela();
+//                JOptionPane.showMessageDialog(null, campeonato.tabelaDePontuacao());
                 return true;
 
             } catch (Exception e) {
@@ -81,8 +83,10 @@ public class Main {
             }
             return true;
         }
-
-        JOptionPane.showMessageDialog(null, campeonato.tabelaDePontuacao());
+        //implementar tabela
+        Tabela tabela = new Tabela(campeonato.getListaDeTimes());
+        tabela.mostrarTabela();
+//        JOptionPane.showMessageDialog(null, campeonato.tabelaDePontuacao());
         return false;
     }
 }
