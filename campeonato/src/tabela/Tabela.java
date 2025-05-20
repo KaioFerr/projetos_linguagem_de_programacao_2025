@@ -4,6 +4,7 @@ import time.Time;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Tabela {
     private JTable tabela;
@@ -27,6 +28,7 @@ public class Tabela {
         };
 
         Object[][] dados = new Object[listaDeTimes.size()][9];
+        listaDeTimes.sort(Comparator.comparingInt(Time::getPontuacao).reversed());
 
         for (int i = 0; i < listaDeTimes.size(); i++) {
             Time time = listaDeTimes.get(i);
