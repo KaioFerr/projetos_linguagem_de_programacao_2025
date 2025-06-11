@@ -7,6 +7,10 @@ juros valor tempo taxa = valor*(1 + taxa)*tempo
 maior :: Float -> Float -> Float
 maior val1 val2 = max val1 val2
 
+fatorial :: Int -> Int
+fatorial 0 = 1         
+fatorial n = n * fatorial (n-1) 
+
 condicao :: Float -> Int 
 condicao val
         | val > 0 = 1
